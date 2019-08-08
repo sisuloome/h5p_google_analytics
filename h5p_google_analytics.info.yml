@@ -1,0 +1,8 @@
+name: 'H5P Google Analytics'
+type: module
+description: 'Google Analytics for H5P embed view'
+core: 8.x
+package: 'Statistics'
+dependencies:
+  - h5p
+  - google_analytics (>=8.x-3.x)

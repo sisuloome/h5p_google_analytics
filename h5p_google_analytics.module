@@ -1,0 +1,46 @@
+<?php
+
+/**
+ * @file
+ * Contains h5p_google_analytics.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function h5p_google_analytics_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.h5p_google_analytics':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('This module adds basic Google Analytics tracking code into H5P contet embed page. It used configuration provided by google_analytics module, though it lacks any of the additional features.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_h5p_additional_embed_head_tags().
+ * @param  array $tags Array of HTML tags to be added into <head> of embed page
+ */
+function h5p_google_analytics_h5p_additional_embed_head_tags_alter(&$tags) {
+  $config = \Drupal::config('google_analytics.settings');
+  $id = $config->get('account');
+
+  if (preg_match('/^UA-\d+-\d+$/', $id)) {
+    $tags[] = '<!-- Global site tag (gtag.js) - Google Analytics -->';
+    $tags[] = '<script async src="https://www.googletagmanager.com/gtag/js?id=' . $id . '"></script>';
+    $tags[] = implode("\n", [
+      '<script>',
+      'window.dataLayer = window.dataLayer || [];',
+      'function gtag(){dataLayer.push(arguments);}',
+      'gtag(\'js\', new Date());',
+      '',
+      'gtag(\'config\', \'' . $id . '\');',
+      '</script>',
+    ]);
+  }
+}
