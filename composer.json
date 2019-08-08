@@ -4,11 +4,11 @@
   "description": "Google Analytics for H5P",
   "keywords": ["Drupal", "H5P", "Analytics", "Google"],
   "license": "MIT",
-  "homepage": "https://www.drupal.org/project/h5p_google_analytics",
+  "homepage": "https://github.com/sisuloome/h5p_google_analytics",
   "minimum-stability": "dev",
   "support": {
-    "issues": "https://www.drupal.org/project/issues/h5p_google_analytics",
-    "source": "http://cgit.drupalcode.org/h5p_google_analytics"
+    "issues": "https://github.com/sisuloome/h5p_google_analytics/issues",
+    "source": "https://github.com/sisuloome/h5p_google_analytics"
   },
   "require": { }
 }
